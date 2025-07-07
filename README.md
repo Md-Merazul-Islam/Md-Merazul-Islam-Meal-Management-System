@@ -49,6 +49,10 @@ This meal management system enables customers to subscribe to weekly or monthly 
 
 ## 🛠️ Technology Stack
 
+
+![image](https://github.com/user-attachments/assets/bbc5f352-2361-4ae7-b94f-db65a600ee97)
+
+
 ### Backend
 - **Framework**: Django (Python)
 - **Task Queue**: Celery + Celery Beat
