@@ -1,0 +1,13 @@
+.venvs/
+.venv/
+*__pycache__/
+*.pyc
+.pyc
+db.sqlite3
+*.png
+*.jpg
+test.py
+.vercel
+/node_modules
+staticfiles/
+.env

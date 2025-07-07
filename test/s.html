@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stripe Payment</title>
+    <script src="https://js.stripe.com/v3/"></script>
+    <!-- Include Stripe.js -->
+  </head>
+  <body>
+    <!-- Create a form to display Stripe card element -->
+    <form id="payment-form">
+      <div id="card-element">
+        <!-- A Stripe Element will be inserted here. -->
+      </div>
+
+      <!-- Used to display form errors. -->
+      <div id="card-errors" role="alert"></div>
+
+      <button type="submit" id="pay-button">Pay</button>
+    </form>
+
+    <script>
+      // Stripe public key (replace with your own public key)
+      const stripe = Stripe(
+        "pk_test_51QZEaRCswZXaKM4ARthLO0sY7xHwqdxAV8tHRpXouzGhr8sFSwbM9ZfQUzKWljMSwdwXT3iltkoU1si2Ys114kp000bIO5hmxu"
+      ); // e.g. 'pk_test_51H8hB7Jm5GYY5B7dZj5tIu98G9HQmPjE7H1zUSJlxSkBwnTdsQ5xfSPFkDxlRgmZYfMjMEhbn2gttPz8kIYsAFnc00ay3fph5n');
+
+      // Create an instance of Elements
+      const elements = stripe.elements();
+
+      // Create a card element
+      const card = elements.create("card");
+
+      // Mount the card element into the DOM
+      card.mount("#card-element");
+
+      // Your client secret should be dynamically provided from your backend (e.g., after creating a payment intent)
+      const clientSecret =
+        "pi_3RNvF8CswZXaKM4A0Q6teJv7_secret_EMdOLfyMyKgMFBaaLiVn0D5Oh"; // Replace with your actual client secret
+
+      // Handle form submission
+      document
+        .getElementById("payment-form")
+        .addEventListener("submit", async (event) => {
+          event.preventDefault(); // Prevent the form from submitting
+
+          const { error, paymentIntent } = await stripe.confirmCardPayment(
+            clientSecret,
+            {
+              payment_method: {
+                card: card,
+                billing_details: { name: "Customer Name" }, // Add customer billing info here
+              },
+            }
+          );
+
+          if (error) {
+            // Handle error
+            console.error(error.message);
+            alert("Payment failed: " + error.message);
+          } else {
+            // Payment succeeded, display the payment ID
+            console.log("Payment successful!", paymentIntent.id);
+            alert("Payment successful! Payment ID: " + paymentIntent.id);
+          }
+        });
+    </script>
+  </body>
+</html>

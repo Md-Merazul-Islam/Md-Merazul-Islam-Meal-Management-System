@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Preissler's Newsletter</title>
+    <style>
+      body,
+      table,
+      td,
+      div,
+      p {
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.5;
+      }
+      img {
+        border: 0;
+        display: block;
+      }
+      .flex-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .button {
+        background-color: #e0921b;
+        color: #ffffff;
+        padding: 12px 35px;
+        font-size: 16px;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: bold;
+        display: inline-block;
+      }
+      .button:hover {
+        background-color: #c47e18;
+      }
+      .content-block {
+        margin-bottom: 25px;
+        padding: 20px;
+        background-color: #fff9f0;
+        border-radius: 8px;
+      }
+      @media only screen and (max-width: 600px) {
+        .container {
+          padding: 15px !important;
+        }
+        .email-body {
+          padding: 25px !important;
+        }
+        .header-content {
+          padding: 20px 15px !important;
+        }
+        .content-block {
+          padding: 15px !important;
+        }
+        .button {
+          padding: 10px 25px !important;
+          font-size: 14px !important;
+          display: block !important;
+          margin: 0 auto !important;
+          width: 80% !important;
+          text-align: center !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body style="margin: 0; padding: 0; background-color: #f5f5f5">
+    <div
+      class="container"
+      style="
+        width: 100%;
+        max-width: 100%;
+        padding: 40px 20px;
+        background-color: #f5f5f5;
+      "
+    >
+      <div style="max-width: 600px; margin: 0 auto">
+        <!-- Header Section -->
+        <div
+          style="
+            background-color: #c4734d;
+            border-radius: 12px 12px 0 0;
+            overflow: hidden;
+          "
+        >
+          <div
+            class="header-content"
+            style="padding: 30px 25px; text-align: center"
+          >
+            <img
+              src="https://res.cloudinary.com/dnsorselg/image/upload/v1742626355/logo_p1rbam.png"
+              alt="Preissler's Frühstück Logo"
+              style="width: auto; height: 80px; margin: 0 auto 15px"
+            />
+            <h1
+              style="
+                color: #ffffff;
+                font-size: 24px;
+                font-weight: 600;
+                margin: 0;
+              "
+            >
+              {{ subject }}
+            </h1>
+          </div>
+        </div>
+
+        <!-- Email Body -->
+        <div
+          class="email-body"
+          style="
+            background-color: #ffffff;
+            padding: 35px;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+          "
+        >
+          <!-- Decorative Element -->
+          <div
+            style="
+              width: 60px;
+              height: 4px;
+              background: linear-gradient(to right, #a0522d, #e0921b);
+              margin: 0 auto 25px;
+            "
+          ></div>
+
+          <!-- Greeting -->
+          <p
+            style="
+              color: #555555;
+              font-size: 16px;
+              margin-bottom: 25px;
+              text-align: center;
+            "
+          >
+            {{ content }}
+          </p>
+          <div>
+            <!-- Dyanamic content  -->
+          </div>
+
+          <!-- Unsubscribe Button -->
+          <div
+            style="text-align: center; margin-top: 30px; margin-bottom: 30px"
+          >
+            <p style="color: #777777; font-size: 14px; margin-bottom: 15px">
+              Sie möchten keine Newsletter mehr erhalten?
+            </p>
+            <a
+              href="#"
+              class="button"
+              style="
+                background-color: #888888;
+                font-size: 10px;
+                padding: 10px 20px;
+              "
+            >
+              Newsletter abbestellen
+            </a>
+          </div>
+
+          <div
+            style="height: 1px; background-color: #eeeeee; margin: 30px 0"
+          ></div>
+
+          <!-- Social Media Icons -->
+          <div style="text-align: center; margin-bottom: 20px">
+            <p style="color: #777777; font-size: 14px; margin-bottom: 15px">
+              Folgen Sie uns:
+            </p>
+            <div style="display: inline-block; margin: 0 10px">
+              <a href="#" style="text-decoration: none">
+                <div
+                  style="
+                    width: 32px;
+                    height: 32px;
+                    background-color: #c4734d;
+                    border-radius: 50%;
+                    display: inline-block;
+                    text-align: center;
+                    line-height: 32px;
+                    color: white;
+                    font-weight: bold;
+                  "
+                >
+                  f
+                </div>
+              </a>
+            </div>
+            <div style="display: inline-block; margin: 0 10px">
+              <a href="#" style="text-decoration: none">
+                <div
+                  style="
+                    width: 32px;
+                    height: 32px;
+                    background-color: #c4734d;
+                    border-radius: 50%;
+                    display: inline-block;
+                    text-align: center;
+                    line-height: 32px;
+                    color: white;
+                    font-weight: bold;
+                  "
+                >
+                  i
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <div style="text-align: center">
+            <p style="color: #888888; font-size: 13px; margin-bottom: 10px">
+              Dies ist eine automatische Nachricht, bitte antworten Sie nicht
+              auf diese E-Mail.
+            </p>
+            <p style="color: #888888; font-size: 13px; margin-bottom: 5px">
+              Preissler's Frühstück GmbH, Musterstraße 123, 12345 Musterstadt
+            </p>
+            <p style="color: #888888; font-size: 13px">
+              &copy; 2025 Preissler's Frühstück. Alle Rechte vorbehalten.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

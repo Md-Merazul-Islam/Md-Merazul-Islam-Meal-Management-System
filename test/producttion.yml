@@ -1,0 +1,70 @@
+services:
+  web:
+    build: .
+    container_name: django_web_gepixelt_v2
+    environment:
+      - DNS=8.8.8.8
+    command: >
+      gunicorn project_root.wsgi:application 
+      --bind 0.0.0.0:8008   # Changed port to 8008
+      --timeout 180 
+      --workers 3 
+      --log-level info
+    volumes:
+      - .:/app
+      - static_volume_v2:/app/staticfiles   # renamed volume
+      - media_volume_v2:/app/media          # renamed volume
+    expose:
+      - "8008"
+    ports:
+      - "8008:8008"   # changed host port to 8008
+    env_file:
+      - ./project_root/.env
+    depends_on:
+      - db
+      - redis
+
+  db:
+    image: postgres:15
+    container_name: postgres_db_gepixelt_v2   # changed container name
+    environment:
+      POSTGRES_DB: gepixelt_db_v2              # changed db name
+      POSTGRES_USER: gepixelt_user_v2          # changed user
+      POSTGRES_PASSWORD: password_v2            # changed password
+    volumes:
+      - postgres_data_v2:/var/lib/postgresql/data/  # renamed volume
+
+  redis:
+    image: redis:7
+    container_name: redis_cache_gepixelt_v2    # changed container name
+    ports:
+      - "6380:6379"  # changed host port to 6380
+
+  celery:
+    build: .
+    container_name: celery_worker_gepixelt_v2  # changed container name
+    command: celery -A project_root worker --loglevel=info
+    volumes:
+      - .:/app
+    depends_on:
+      - web
+      - redis
+    env_file:
+      - ./project_root/.env
+
+  celerybeat:
+    build: .
+    container_name: celery_beat_gepixelt_v2    # changed container name
+    command: celery -A project_root beat --loglevel=info --schedule=/data/celerybeat-schedule
+    volumes:
+      - ./data:/data
+    depends_on:
+      - web
+      - redis
+    env_file:
+      - ./project_root/.env
+
+volumes:
+  postgres_data_v2:
+  static_volume_v2:
+  media_volume_v2:

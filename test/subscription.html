@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Save Card with Stripe</title>
+    <script src="https://js.stripe.com/v3/"></script>
+  </head>
+  <body>
+    <h2>Save Your Card</h2>
+    <form id="setup-form">
+      <div id="card-element"></div>
+      <div id="card-errors" role="alert" style="color: red"></div>
+      <button type="submit">Save Card</button>
+    </form>
+
+    <script>
+      const stripe = Stripe(
+        "pk_test_51QZEaRCswZXaKM4ARthLO0sY7xHwqdxAV8tHRpXouzGhr8sFSwbM9ZfQUzKWljMSwdwXT3iltkoU1si2Ys114kp000bIO5hmxu"
+      ); // Replace with your actual Stripe publishable key
+      const elements = stripe.elements();
+      const card = elements.create("card");
+      card.mount("#card-element");
+
+      // You should fetch this client secret from your backend via AJAX
+      const clientSecret =
+        "seti_1RVTVrCswZXaKM4AcCc1T9I5_secret_SQKAiMdeQyOkXQte6lR9G0IgoRzlWJ4"; // Replace with your actual SetupIntent client_secret
+
+      document
+        .getElementById("setup-form")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const { error, setupIntent } = await stripe.confirmCardSetup(
+            clientSecret,
+            {
+              payment_method: {
+                card: card,
+                billing_details: {
+                  name: "Customer Name", // You can dynamically set this
+                },
+              },
+            }
+          );
+
+          if (error) {
+            document.getElementById("card-errors").textContent = error.message;
+            console.error("Setup failed:", error);
+          } else {
+            console.log("Setup successful:", setupIntent);
+            alert(
+              "Card saved! Payment Method ID: " + setupIntent.payment_method
+            );
+
+            // Optionally send setupIntent.payment_method to your backend to save it
+          }
+        });
+    </script>
+  </body>
+</html>
