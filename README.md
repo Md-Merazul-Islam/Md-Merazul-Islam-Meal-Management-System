@@ -180,7 +180,10 @@ PAYPAL_TEST_SECRET_KEY=your-paypal-secret
 2. **Production Planning**: Plan meals based on upcoming orders
 3. **Inventory Management**: Track ingredient requirements
 
-## 🔧 API Endpoints
+   
+
+
+## 🔧 API Endpoints [POSTMAN](https://axionasdf.postman.co/workspace/SM-Technology-Work-Space-%F0%9F%95%9B~dd219c99-5e2e-42b8-8fd5-4d7888f7ec19/collection/40097709-d0cceafa-8a69-426d-afb1-89148dee9c8b?action=share&creator=40097709) 
 
 ### Authentication
 - `POST /api/auth/login/` - User login
