@@ -12,7 +12,7 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-ALLOWED_HOSTS = ['*']  # Allow host
+ALLOWED_HOSTS = ['*']  
 
 # Application definition
 INSTALLED_APPS = [
@@ -121,11 +121,6 @@ USE_TZ = True
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-# extra settings add from me --------------------------------
-
-
-# extra settings add from me --------------------------------
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 
@@ -232,10 +227,10 @@ EMAIL_PORT = 2525
 
 EMAIL_USE_TLS = True
 # # for email notification
-EMAIL_HOST_USER = '889678001@smtp-brevo.com'
-EMAIL_HOST_PASSWORD = 'BdcV982PfYmnWgEK'
-DEFAULT_FROM_EMAIL = 'ashrafulsifat26@gmail.com'
-BEKARY_EMAIL = 'bluskybooking.io@gmail.com'
+EMAIL_HOST_USER =os.environ('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = os.environ('DEFAULT_FROM_EMAIL')
+BEKARY_EMAIL = os.environ('BEKARY_EMAIL')
 
 ADMIN_EMAIL = os.getenv('ADMIN_EMAIL')
 
@@ -245,28 +240,16 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'gepixelt_db',
-#         'USER': 'gepixelt_user',
-#         'PASSWORD': 'password',
-#         'HOST': 'db',
-#         'PORT': '5432',
-#     }
-# }
-
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'postgres',
-#         'USER': 'postgres.cmestvoziqiqpceercse',
-#         'PASSWORD': 'viu8@UPQnuAQbKm',
-#         'HOST': 'aws-0-ap-southeast-1.pooler.supabase.com',
-#         'PORT': '5432',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ('DB_NAME'),
+        'USER': os.environ('DB_USER'),
+        'PASSWORD': os.environ('DB_PASSWORD'),
+        'HOST': os.environ('DB_HOST'),
+        'PORT': '5432',
+    }
+}
 
 
 DATABASES = {
