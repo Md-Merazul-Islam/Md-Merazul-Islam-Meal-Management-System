@@ -1,4 +1,8 @@
-﻿# 🍽️ Meal Management System
+![image](https://github.com/user-attachments/assets/e1877442-03b3-4ecc-a0fe-6ae9fc219a6e)
+
+
+
+# 🍽️ Meal Management System
 
 A comprehensive meal subscription and delivery management platform built with Django, featuring automated scheduling, payment processing, and multi-role management capabilities.
 
@@ -60,6 +64,8 @@ This meal management system enables customers to subscribe to weekly or monthly 
 ### Payment Integration
 - **PayPal**: PayPal SDK
 - **Stripe**: Stripe API
+- ![image](https://github.com/user-attachments/assets/ce80ce8f-9fad-45d2-acc9-8990d40d85c4)
+
 
 ### Object Storage
 -  **S3 oject storage 
